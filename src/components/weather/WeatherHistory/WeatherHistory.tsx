@@ -1,6 +1,6 @@
 import type React from "react"
 import { motion } from "framer-motion"
-import { History, Trash2 } from "lucide-react"
+import { History } from "lucide-react"
 import WeatherCard from "../WeatherCard/WeatherCard"
 import type { WeatherData } from "../../../services/api/types"
 import "./WeatherHistory.scss"
@@ -14,7 +14,6 @@ interface WeatherHistoryProps {
 const WeatherHistory: React.FC<WeatherHistoryProps> = ({
   weatherHistory,
   loading = false,
-  onClear,
 }) => {
   if (loading) {
     return (
@@ -55,16 +54,7 @@ const WeatherHistory: React.FC<WeatherHistoryProps> = ({
           <History className="weather-history__icon" />
           <span>Weather History ({weatherHistory.length})</span>
         </h2>
-        {onClear && (
-          <button
-            className="weather-history__clear-button"
-            onClick={onClear}
-            title="Clear history"
-          >
-            <Trash2 className="weather-history__clear-icon" />
-            <span>Clear</span>
-          </button>
-        )}
+       
       </div>
 
       <motion.div

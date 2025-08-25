@@ -4,37 +4,38 @@
 .weather-header {
   text-align: center;
   padding: $spacing-xl 0;
-  
+  background-color: $primary-color; // Added background
+  color: $text-white;               // Ensure text is white
+
   .header-content {
-    // Use simple fade-in keyframes since no mixin exists
     animation: fade-in 0.8s ease-in-out;
   }
-  
+
   .logo {
     @include flex-center;
     gap: $spacing-md;
     margin-bottom: $spacing-md;
-    
+
     .logo-icon {
       width: 3rem;
       height: 3rem;
       color: $text-white;
       filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
     }
-    
+
     .logo-text {
       font-size: 3rem;
       font-weight: 800;
       color: $text-white;
       text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       letter-spacing: -0.025em;
-      
+
       @include responsive($breakpoint-md) {
         font-size: 4rem;
       }
     }
   }
-  
+
   .subtitle {
     font-size: 1.125rem;
     color: rgba($text-white, 0.9);
@@ -42,7 +43,7 @@
     max-width: 600px;
     margin: 0 auto;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    
+
     @include responsive($breakpoint-md) {
       font-size: 1.25rem;
     }
@@ -53,16 +54,16 @@
 @media (max-width: $breakpoint-md) {
   .weather-header {
     padding: $spacing-xl 0;
-    
+
     .logo {
       flex-direction: column;
       gap: $spacing-sm;
-      
+
       .logo-text {
         font-size: 2.5rem;
       }
     }
-    
+
     .subtitle {
       font-size: 1rem;
       padding: 0 $spacing-md;
@@ -70,7 +71,7 @@
   }
 }
 
-// Add fade-in keyframes since mixin does not exist
+// Fade-in keyframes
 @keyframes fade-in {
   from {
     opacity: 0;

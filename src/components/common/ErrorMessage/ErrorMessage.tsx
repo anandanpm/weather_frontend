@@ -1,14 +1,12 @@
-
-
-import type React from "react"
-import { AlertCircle, X } from "lucide-react"
-import { motion } from "framer-motion"
-import "./ErrorMessage.scss"
+import type React from "react";
+import { AlertCircle, X } from "lucide-react";
+import { motion } from "framer-motion";
+import "./ErrorMessage.scss";
 
 interface ErrorMessageProps {
-  message: string
-  onClose?: () => void
-  type?: "error" | "warning" | "success" | "info"
+  message: string;
+  onClose?: () => void;
+  type?: "error" | "warning" | "success" | "info";
 }
 
 const ErrorMessage: React.FC<ErrorMessageProps> = ({ message, onClose, type = "error" }) => {
@@ -19,13 +17,14 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({ message, onClose, type = "e
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
     >
-      <div className="flex items-center">
+      <div className="error-message__content">
         <AlertCircle className="error-icon" />
         <p className="error-text">{message}</p>
       </div>
+
       {onClose && (
         <button
-          className="ml-4 text-gray-400 hover:text-gray-600 transition-colors"
+          className="error-close-btn"
           onClick={onClose}
           aria-label="Close error message"
         >
@@ -33,7 +32,7 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({ message, onClose, type = "e
         </button>
       )}
     </motion.div>
-  )
-}
+  );
+};
 
-export default ErrorMessage
+export default ErrorMessage;

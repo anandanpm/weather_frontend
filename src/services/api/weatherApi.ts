@@ -1,7 +1,7 @@
 import axios, { type AxiosResponse } from "axios"
 import type { WeatherData } from "./types"
 
-const API_BASE_URL = "http://localhost:3001/weather"
+const API_BASE_URL = "http://localhost:5000/weather"
 
 // Create axios instance with default config
 const apiClient = axios.create({
@@ -37,6 +37,7 @@ export class WeatherApi {
     const response = await apiClient.get("/", {
       params: { city },
     })
+    console.log(response.data,'the data is comming from the api')
     return response.data
   }
 
@@ -49,6 +50,7 @@ export class WeatherApi {
     const response = await apiClient.get("/search", {
       params: { city },
     })
+    console.log(response.data,'the data is comming from the db')
     return response.data
   }
 }
