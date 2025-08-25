@@ -1,4 +1,6 @@
+
 import type { WeatherData } from "../api/types";
+
 
 
 const API_BASE_URL = 'http://localhost:3001/weather';
