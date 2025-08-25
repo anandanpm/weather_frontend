@@ -1,0 +1,80 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.weather-search {
+  margin-bottom: $spacing-2xl;
+
+  &__input-group {
+    display: flex;
+    gap: $spacing-md;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @media (max-width: $breakpoint-sm) {
+      flex-direction: column;
+    }
+  }
+
+  &__input-wrapper {
+    position: relative;
+    flex: 1;
+  }
+
+  &__input-icon {
+    position: absolute;
+    left: $spacing-md;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.25rem;
+    height: 1.25rem;
+    color: $text-light;
+    pointer-events: none;
+  }
+
+  &__input {
+    width: 100%;
+    padding: $spacing-md $spacing-md $spacing-md 3rem;
+    border: 2px solid #e2e8f0;
+    border-radius: $border-radius-lg;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background: $bg-primary;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    &:disabled {
+      background: #f8fafc;
+      cursor: not-allowed;
+    }
+
+    &::placeholder {
+      color: $text-light;
+    }
+  }
+
+  &__button {
+    @include button-primary;
+    padding: $spacing-md $spacing-xl;
+    font-size: 1rem;
+    border-radius: $border-radius-lg;
+    white-space: nowrap;
+
+    @media (max-width: $breakpoint-sm) {
+      width: 100%;
+    }
+  }
+
+  &__button-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: $spacing-sm;
+  }
+
+  &__button-text {
+    font-weight: 600;
+  }
+}
