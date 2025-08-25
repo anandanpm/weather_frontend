@@ -1,0 +1,91 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.loading-spinner {
+  @include flex-center;
+  flex-direction: column;
+  gap: $spacing-md;
+  
+  &--sm {
+    .spinner-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    
+    .spinner-message {
+      font-size: 0.875rem;
+    }
+  }
+  
+  &--md {
+    .spinner-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    
+    .spinner-message {
+      font-size: 1rem;
+    }
+  }
+  
+  &--lg {
+    .spinner-icon {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+    
+    .spinner-message {
+      font-size: 1.125rem;
+    }
+  }
+  
+  .spinner-icon {
+    color: $white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+  
+  .spinner-message {
+    color: $white;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: rgba($black, 0.3);
+  backdrop-filter: blur(4px);
+  @include flex-center;
+  
+  .loading-backdrop {
+    padding: $spacing-xl;
+    border-radius: $border-radius-xl;
+    text-align: center;
+    min-width: 200px;
+    @include slide-in(up, 20px, 0.3s);
+  }
+}
+
+// Pulse effect for loading states
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.loading-spinner--pulse {
+  .spinner-icon {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
