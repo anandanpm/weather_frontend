@@ -1,9 +1,9 @@
 
+
 import type React from "react"
 import { motion } from "framer-motion"
 import { MapPin, Thermometer, Calendar } from "lucide-react"
 import type { WeatherData } from "../../../services/api/types"
-import "./WeatherCard.scss"
 
 interface WeatherCardProps {
   weather: WeatherData
@@ -16,43 +16,41 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weather, onClick }) => {
   }
 
   const getTemperatureColor = (temp: number) => {
-    if (temp <= 0) return "cold"
-    if (temp <= 15) return "cool"
-    if (temp <= 25) return "warm"
-    return "hot"
+    if (temp <= 0) return "text-blue-600 bg-blue-50"
+    if (temp <= 15) return "text-green-600 bg-green-50"
+    if (temp <= 25) return "text-yellow-600 bg-yellow-50"
+    return "text-red-600 bg-red-50"
   }
 
   return (
     <motion.div
-      className="weather-card"
+      className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-lg transition-shadow border"
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
     >
-      <div className="weather-card__header">
-        <div className="weather-card__location">
-          <MapPin className="weather-card__icon" />
-          <h3 className="weather-card__city">{weather.city}</h3>
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center space-x-2">
+          <MapPin className="w-5 h-5 text-gray-500" />
+          <h3 className="text-lg font-semibold text-gray-900">{weather.city}</h3>
         </div>
       </div>
 
-      <div className="weather-card__main">
+      <div className="text-center mb-4">
         <div
-          className={`weather-card__temperature weather-card__temperature--${getTemperatureColor(weather.temperature)}`}
+          className={`inline-flex items-center space-x-2 px-4 py-2 rounded-full ${getTemperatureColor(weather.temperature)}`}
         >
-          <Thermometer className="weather-card__temp-icon" />
-          <span className="weather-card__temp-value">{weather.temperature}°C</span>
+          <Thermometer className="w-5 h-5" />
+          <span className="text-2xl font-bold">{weather.temperature}°C</span>
         </div>
-        <p className="weather-card__condition">{weather.condition}</p>
+        <p className="text-gray-600 mt-2 capitalize">{weather.condition}</p>
       </div>
 
-      <div className="weather-card__footer">
-        <div className="weather-card__date">
-          <Calendar className="weather-card__date-icon" />
-          <span className="weather-card__date-text">{formatDate(weather.date)}</span>
-        </div>
+      <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
+        <Calendar className="w-4 h-4" />
+        <span>{formatDate(weather.date)}</span>
       </div>
     </motion.div>
   )

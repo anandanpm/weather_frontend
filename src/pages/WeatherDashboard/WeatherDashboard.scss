@@ -1,0 +1,50 @@
+.weather-dashboard {
+  min-height: 100vh;
+  background: var(--background-gradient);
+
+  &__main {
+    padding: 2rem 0;
+  }
+
+  &__search-content,
+  &__database-content {
+    margin-top: 2rem;
+  }
+
+  &__current-weather {
+    margin-top: 2rem;
+  }
+
+  &__section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  &__search-results {
+    margin-top: 2rem;
+  }
+
+  &__results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .weather-dashboard {
+    &__results-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

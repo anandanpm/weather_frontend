@@ -1,53 +1,56 @@
+import axios, { type AxiosResponse } from "axios"
+import type { WeatherData } from "./types"
 
-import type { WeatherData } from "../api/types";
+const API_BASE_URL = "http://localhost:3001/weather"
 
-
-
-const API_BASE_URL = 'http://localhost:3001/weather';
+// Create axios instance with default config
+const apiClient = axios.create({
+  baseURL: API_BASE_URL,
+  timeout: 10000,
+  headers: {
+    "Content-Type": "application/json",
+  },
+})
 
 class WeatherApiError extends Error {
-  status?: number;
-  
+  status?: number
+
   constructor(message: string, status?: number) {
-    super(message);
-    this.name = 'WeatherApiError';
-    this.status = status;
+    super(message)
+    this.name = "WeatherApiError"
+    this.status = status
   }
 }
 
-const handleApiResponse = async <T>(response: Response): Promise<T> => {
-  if (!response.ok) {
-    const errorText = await response.text();
-    let errorMessage = 'An error occurred';
-    
-    try {
-      const errorJson = JSON.parse(errorText);
-      errorMessage = errorJson.message || errorMessage;
-    } catch {
-      errorMessage = errorText || errorMessage;
-    }
-    
-    throw new WeatherApiError(errorMessage, response.status);
-  }
-  
-  return response.json();
-};
+// Response interceptor for error handling
+apiClient.interceptors.response.use(
+  (response: AxiosResponse) => response,
+  (error) => {
+    const message = error.response?.data?.message || error.message || "An error occurred"
+    const status = error.response?.status
+    throw new WeatherApiError(message, status)
+  },
+)
 
 export class WeatherApi {
   static async getCurrentWeather(city: string): Promise<WeatherData> {
-    const response = await fetch(`${API_BASE_URL}?city=${encodeURIComponent(city)}`);
-    return handleApiResponse<WeatherData>(response);
+    const response = await apiClient.get("/", {
+      params: { city },
+    })
+    return response.data
   }
 
   static async getAllWeather(): Promise<WeatherData[]> {
-    const response = await fetch(`${API_BASE_URL}/all`);
-    return handleApiResponse<WeatherData[]>(response);
+    const response = await apiClient.get("/all")
+    return response.data
   }
 
   static async searchWeatherInDB(city: string): Promise<WeatherData[]> {
-    const response = await fetch(`${API_BASE_URL}/search?city=${encodeURIComponent(city)}`);
-    return handleApiResponse<WeatherData[]>(response);
+    const response = await apiClient.get("/search", {
+      params: { city },
+    })
+    return response.data
   }
 }
 
-export { WeatherApiError };
+export { WeatherApiError }
