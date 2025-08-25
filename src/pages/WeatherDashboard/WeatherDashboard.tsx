@@ -12,6 +12,7 @@ import WeatherHistory from "../../components/weather/WeatherHistory/WeatherHisto
 import WeatherCard from "../../components/weather/WeatherCard/WeatherCard"
 import { WeatherApi, WeatherApiError } from "../../services/api/weatherApi"
 import type { WeatherData } from "../../services/api/types"
+import "./WeatherDashboard.scss"
 
 const WeatherDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>("search")

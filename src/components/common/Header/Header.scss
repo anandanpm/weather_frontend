@@ -1,12 +1,13 @@
-@import '../../../styles/variables';
-@import '../../../styles/mixins';
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
 
 .weather-header {
   text-align: center;
-  padding: $spacing-xxl 0;
+  padding: $spacing-xl 0;
   
   .header-content {
-    @include fade-in(0.8s);
+    // Use simple fade-in keyframes since no mixin exists
+    animation: fade-in 0.8s ease-in-out;
   }
   
   .logo {
@@ -17,18 +18,18 @@
     .logo-icon {
       width: 3rem;
       height: 3rem;
-      color: $white;
+      color: $text-white;
       filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
     }
     
     .logo-text {
       font-size: 3rem;
       font-weight: 800;
-      color: $white;
+      color: $text-white;
       text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       letter-spacing: -0.025em;
       
-      @include respond(md) {
+      @include responsive($breakpoint-md) {
         font-size: 4rem;
       }
     }
@@ -36,13 +37,13 @@
   
   .subtitle {
     font-size: 1.125rem;
-    color: rgba($white, 0.9);
+    color: rgba($text-white, 0.9);
     font-weight: 400;
     max-width: 600px;
     margin: 0 auto;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     
-    @include respond(md) {
+    @include responsive($breakpoint-md) {
       font-size: 1.25rem;
     }
   }
@@ -66,5 +67,17 @@
       font-size: 1rem;
       padding: 0 $spacing-md;
     }
+  }
+}
+
+// Add fade-in keyframes since mixin does not exist
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

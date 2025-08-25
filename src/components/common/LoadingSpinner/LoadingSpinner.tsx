@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { motion } from "framer-motion"
+import "./LoadingSpinner.scss"
 
 interface LoadingSpinnerProps {
   size?: "sm" | "md" | "lg"

@@ -4,6 +4,7 @@ import type React from "react"
 import { motion } from "framer-motion"
 import { MapPin, Thermometer, Calendar } from "lucide-react"
 import type { WeatherData } from "../../../services/api/types"
+import "./WeatherCard.scss"
 
 interface WeatherCardProps {
   weather: WeatherData

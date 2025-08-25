@@ -63,3 +63,16 @@
     @content;
   }
 }
+
+@mixin glass-morphism(
+  $bg-color: rgba(255, 255, 255, 0.1),
+  $blur: 10px,
+  $border-radius: $border-radius-lg,
+  $border-color: rgba(255, 255, 255, 0.2)
+) {
+  background: $bg-color;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+}
