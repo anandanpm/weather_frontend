@@ -1,0 +1,89 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.weather-tabs {
+  margin-bottom: $spacing-2xl;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $spacing-md;
+    max-width: 900px;
+    margin: 0 auto;
+
+    @media (max-width: $breakpoint-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__tab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding: $spacing-lg;
+    background: $bg-card;
+    border: 2px solid #e2e8f0;
+    border-radius: $border-radius-lg;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+
+    &:hover {
+      border-color: $primary-color;
+      box-shadow: $shadow-md;
+    }
+
+    &--active {
+      border-color: $primary-color;
+      background: rgba(59, 130, 246, 0.05);
+      box-shadow: $shadow-md;
+
+      .weather-tabs__icon {
+        color: $primary-color;
+      }
+
+      .weather-tabs__label {
+        color: $primary-color;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: $text-secondary;
+    transition: color 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: $text-primary;
+    transition: all 0.3s ease;
+  }
+
+  &__description {
+    font-size: 0.875rem;
+    color: $text-secondary;
+    line-height: 1.4;
+  }
+
+  &__indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: $primary-color;
+    border-radius: $border-radius-sm $border-radius-sm 0 0;
+  }
+}
