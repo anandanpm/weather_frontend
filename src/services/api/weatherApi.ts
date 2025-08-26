@@ -1,73 +1,10 @@
-// import axios, { type AxiosResponse } from "axios"
-// import type { WeatherData } from "./types"
 
-// const API_BASE_URL = import.meta.env.VITE_WEATHER_API_URL  
-
-// console.log(API_BASE_URL,'the base url is here')
-// const apiClient = axios.create({
-//   baseURL: API_BASE_URL,
-//   timeout: 10000,
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-// })
-
-// class WeatherApiError extends Error {
-//   status?: number
-
-//   constructor(message: string, status?: number) {
-//     super(message)
-//     this.name = "WeatherApiError"
-//     this.status = status
-//   }
-// }
-
-// // Response interceptor for error handling
-// apiClient.interceptors.response.use(
-//   (response: AxiosResponse) => response,
-//   (error) => {
-//     const message = error.response?.data?.message || error.message || "An error occurred"
-//     const status = error.response?.status
-//     throw new WeatherApiError(message, status)
-//   },
-// )
-
-// export class WeatherApi {
-//   static async getCurrentWeather(city: string): Promise<WeatherData> {
-//     const response = await apiClient.get("/", {
-//       params: { city },
-//     })
-//     console.log(response.data,'the data is comming from the api')
-//     return response.data
-//   }
-
-//   static async getAllWeather(): Promise<WeatherData[]> {
-//     const response = await apiClient.get("/all")
-//     return response.data
-//   }
-
-//   static async searchWeatherInDB(city: string): Promise<WeatherData[]> {
-//     const response = await apiClient.get("/search", {
-//       params: { city },
-//     })
-//     console.log(response.data,'the data is comming from the db')
-//     return response.data
-//   }
-// }
-
-// export { WeatherApiError }
 
 
 import axios, { type AxiosResponse } from "axios"
 import type { WeatherData } from "./types"
 
 const API_BASE_URL = import.meta.env.VITE_WEATHER_API_URL  
-
-// Enhanced debugging
-console.log('🔍 Debug Info:')
-console.log('- API_BASE_URL:', API_BASE_URL)
-console.log('- All env vars:', import.meta.env)
-console.log('- Mode:', import.meta.env.MODE)
 
 if (!API_BASE_URL) {
   console.error('❌ CRITICAL: VITE_WEATHER_API_URL is not defined!')
